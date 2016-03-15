@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "ClipoBackend": {
+      "applicationId": "80eGXamRZFPjmdaD8Zi1fs2CO9N644Dkj7E2AEaI"
+    },
+    "_default": {
+      "link": "ClipoBackend"
+    }
+  }
+}
