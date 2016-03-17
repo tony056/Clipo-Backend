@@ -24,3 +24,19 @@ module.exports.saveLog = function(info, callback){
 		}
 	});
 };
+
+
+/* send to pubnub */
+Parse.Cloud.define(constants.SEND_TO_PUBNUB, function(request, response){
+	Parse.Cloud.httpRequest({
+		url: 'http://pubsub.pubnub.com/publish/' + constants.pubnubConfiguration.publish_key + '/' 
+		+ constants.pubnubConfiguration.subscribe_key + '/0/' + request.params.channel + 
+		 '/0/' + encodeURIComponent(JSON.stringify(request.params.message)),
+		success: function(httpResponse){
+			response.success(httpResponse);
+		},
+		error: function(httpResponse){
+			response.error(httpResponse);
+		}
+	});
+});
