@@ -7,12 +7,13 @@ Parse.Cloud.afterSave(constants.CLIPO_TOPIC, function(request){
 	var topicId = topicInfo.id;
 	topicInfo.get('owner').fetch().then(function(owner){
 		topicInfo.get('parent').fetch().then(function(project){
+			var action = utils.checkACType();
 			var info = {
 				ownerName : owner.get('username'),
 				ownerId : owner.id,
 				targetName : topicInfo.get('name'),
 				targetType : constants.CLIPO_TOPIC,
-				action : constants.ADD,
+				action : action,
 				projectId : project.id
 			};
 			utils.saveLog(info, function(err, result){
