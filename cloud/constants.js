@@ -1,5 +1,5 @@
 /* db collection name */
-const CLIPO_USER = 'CPUser';
+const CLIPO_USER = '_User';
 const CLIPO_PROJECT = 'CPProject';
 const CLIPO_TOPIC = 'CPTopic';
 const CLIPO_FILE = 'CPFile';
@@ -19,6 +19,7 @@ const pubnubConfiguration = {
 const ADD = 'ADD';
 const DELETE = 'DELETE';
 const REVISE = 'REVISE';
+const NO_ACTION = 'NO ACTION';
 
 
 /* backend action */
@@ -43,5 +44,6 @@ module.exports = {
 	SAVE_LOG: SAVE_LOG,
 	ADD: ADD,
 	DELETE: DELETE,
-	REVISE: REVISE
+	REVISE: REVISE,
+	NO_ACTION: NO_ACTION
 };
