@@ -2,7 +2,8 @@ var constants = require('cloud/constants.js');
 var utils = require('cloud/utils.js');
 var project = require('cloud/project.js');
 var topic = require('cloud/topic.js');
-
+var test = require('cloud/test.js');
+var file = require('cloud/file.js');
 
 Parse.Cloud.afterSave(constants.CLIPO_LOG, function(request){
 	/* query user to send notification */
