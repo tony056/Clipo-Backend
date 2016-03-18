@@ -19,6 +19,14 @@ Parse.Cloud.define('testAfterSave', function(request, response){
 					response.error(error); 
 			});
 			break;
+		case constants.CLIPO_COMMENT:
+			newComment('nknzJC2rYh', 'JUK4UFDT69', 'J0c0bGNFCO', function(error){
+				if(!error)
+					response.success('test finished');
+				else
+					response.error(error); 
+			});
+			break;
 		default:
 			response.error('please give the correct type');
 			break;
@@ -54,4 +62,31 @@ var newFile = function(userId, topicId, projectId, callback){
 			});
 		});
 	});	
+};
+
+
+var newComment = function(userId, fileId, projectId, callback){
+	var CPComment = Parse.Object.extend(constants.CLIPO_COMMENT);
+	var comment = new CPComment();
+	comment.set('content', 'comment test');
+	utils.queryObject(constants.CLIPO_USER, userId, function(error, user){
+		if(error) throw error;
+		utils.queryObject(constants.CLIPO_PROJECT, projectId, function(error, project){
+			if(error) throw error;
+			utils.queryObject(constants.CLIPO_FILE, fileId, function(error, file){
+				if(error) throw error;
+				comment.set('owner', user);
+				comment.set('parent', project);
+				comment.set('file', file);
+				comment.save(null, {
+					success: function(object){
+						callback(null);
+					},
+					error: function(error) {
+						callback(error.message);
+					}
+				});
+			});
+		});
+	});
 };
